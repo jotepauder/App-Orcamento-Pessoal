@@ -26,7 +26,7 @@ class Bd {
 
     gravar(d) {
         let id = this.getProximoId()
-        //localStorage.setItem(id, JSON.stringify(d))
+        localStorage.setItem(id, JSON.stringify(d))
         localStorage.setItem('id', id)
     }
 }
@@ -53,7 +53,3 @@ function cadastrarDepesa() {
     bd.gravar(despesa)
 
 }
-
-
-
-
