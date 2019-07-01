@@ -61,8 +61,9 @@ function cadastrarDepesa() {
 
     if (despesa.validarDados()) {
         bd.gravar(despesa)
+        $('#sucessoGravacao').modal('show')
     } else {
-        alert('Preencha todos os campos antes de enviar!')
+        $('#erroGravacao').modal('show')
     }
 
 }
