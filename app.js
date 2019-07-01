@@ -58,12 +58,44 @@ function cadastrarDepesa() {
         descricao.value,
         valor.value
     )
-
-    if (despesa.validarDados()) {
+    
+        //Valida se todos os campos estão preenchidos
+    let funcao = despesa.validarDados()
+    if (funcao) {
         bd.gravar(despesa)
-        $('#sucessoGravacao').modal('show')
+        alterarModal(funcao)
+
     } else {
-        $('#erroGravacao').modal('show')
+        alterarModal(funcao)
     }
 
+}
+//Altera informações do modal do Boostraṕ
+function alterarModal(funcao){
+    if (funcao == true){
+        document.getElementById('titulo-modal').innerHTML = 'Gravado com sucesso'
+        document.getElementById('corpo-modal').innerHTML = 'A despesa foi registrada com sucesso!'
+        document.getElementById('btn-modal').className = "btn btn-sucess"
+        document.getElementById('btn-modal').innerHTML = 'Ok'
+        $('#modalRegistroDespesa').modal('show')
+    }else{
+        document.getElementById('titulo-modal').innerHTML = 'Erro na gravação'
+        document.getElementById('corpo-modal').innerHTML = 'Existem campos a serem preenchidos'
+        document.getElementById('btn-modal').className = "btn btn-danger"
+        document.getElementById('btn-modal').innerHTML = 'Voltar e corrigir'
+        $('#modalRegistroDespesa').modal('show')
+    }
+}
+
+function somenteNumeros(e) {
+    var charCode = e.charCode ? e.charCode : e.keyCode;
+    // charCode 8 = backspace   
+    // charCode 9 = tab
+    if (charCode != 8 && charCode != 9) {
+        // charCode 48 equivale a 0   
+        // charCode 57 equivale a 9
+        if (charCode < 48 || charCode > 57) {
+            return false;
+        }
+    }
 }
