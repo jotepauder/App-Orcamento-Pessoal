@@ -18,6 +18,17 @@ class Despesa {
     }
 }
 
+//Garante que o campo valor só aceite números
+function somenteNumeros(e) {
+    var charCode = e.charCode ? e.charCode : e.keyCode;
+
+    if (charCode != 8 && charCode != 9) {
+        if (charCode < 48 || charCode > 57) {
+            return false;
+        }
+    }
+}
+
 class Bd {
 
     constructor() {
@@ -37,6 +48,23 @@ class Bd {
         let id = this.getProximoId()
         localStorage.setItem(id, JSON.stringify(d))
         localStorage.setItem('id', id)
+    }
+
+    recuperarRegistros() {
+        let despesas = []
+        let id = localStorage.getItem('id')
+
+        for (let i = 1; i <= id; i++) {
+            let despesa = JSON.parse(localStorage.getItem(i))
+           
+            if (despesa != null) {
+                despesas.push(despesa)
+            }else{
+                continue
+            }
+        }
+
+        return despesas
     }
 }
 
@@ -58,8 +86,8 @@ function cadastrarDepesa() {
         descricao.value,
         valor.value
     )
-    
-        //Valida se todos os campos estão preenchidos
+
+    //Valida se todos os campos estão preenchidos
     let funcao = despesa.validarDados()
     if (funcao) {
         bd.gravar(despesa)
@@ -70,15 +98,15 @@ function cadastrarDepesa() {
     }
 
 }
-//Altera informações do modal do Boostraṕ
-function alterarModal(funcao){
-    if (funcao == true){
+//Altera informações do modal do Boostrap
+function alterarModal(funcao) {
+    if (funcao == true) {
         document.getElementById('titulo-modal').innerHTML = 'Gravado com sucesso'
         document.getElementById('corpo-modal').innerHTML = 'A despesa foi registrada com sucesso!'
         document.getElementById('btn-modal').className = "btn btn-sucess"
         document.getElementById('btn-modal').innerHTML = 'Ok'
         $('#modalRegistroDespesa').modal('show')
-    }else{
+    } else {
         document.getElementById('titulo-modal').innerHTML = 'Erro na gravação'
         document.getElementById('corpo-modal').innerHTML = 'Existem campos a serem preenchidos'
         document.getElementById('btn-modal').className = "btn btn-danger"
@@ -87,15 +115,12 @@ function alterarModal(funcao){
     }
 }
 
-function somenteNumeros(e) {
-    var charCode = e.charCode ? e.charCode : e.keyCode;
-    // charCode 8 = backspace   
-    // charCode 9 = tab
-    if (charCode != 8 && charCode != 9) {
-        // charCode 48 equivale a 0   
-        // charCode 57 equivale a 9
-        if (charCode < 48 || charCode > 57) {
-            return false;
-        }
-    }
+
+
+//Carrega o array de despesas para a view
+function carregaListasDespesas() {
+    let despesas = []
+    despesas = bd.recuperarRegistros()
+
+    console.log(despesas)
 }
