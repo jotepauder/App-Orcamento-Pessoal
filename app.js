@@ -56,10 +56,10 @@ class Bd {
 
         for (let i = 1; i <= id; i++) {
             let despesa = JSON.parse(localStorage.getItem(i))
-           
+
             if (despesa != null) {
                 despesas.push(despesa)
-            }else{
+            } else {
                 continue
             }
         }
@@ -122,5 +122,47 @@ function carregaListasDespesas() {
     let despesas = []
     despesas = bd.recuperarRegistros()
 
-    console.log(despesas)
+    preencheTabela(despesas)
+}
+
+function preencheTabela(despesas) {
+    let tabela = document.getElementById('tabela')
+
+    //percorrer o array despesas listando cada despesa
+    despesas.forEach(element => {
+        //criando a linha <tr>
+        let linha = tabela.insertRow()
+        //criando a coluna
+        linha.insertCell(0).innerHTML = `${element.dia} / ${element.mes} / ${element.ano}`
+        linha.insertCell(1).innerHTML = escolheTipoDespesa(element.tipo)
+        linha.insertCell(2).innerHTML = element.descricao
+        linha.insertCell(3).innerHTML = element.valor
+    });
+
+    /*let despesa = despesas[i]
+    tabela.innerHTML = "<h1>Hello</h1>"
+    tabela.innerHTML = `<td> ${despesa.dia} / ${despesa.mes} / ${despesa.ano} </td>`
+    tabela.innerHTML = "</tr>"
+
+}*/
+}
+
+function escolheTipoDespesa(elemento) {
+    switch (elemento) {
+        case '1':
+            return 'Alimentação'
+            break
+        case '2':
+            return 'Educação'
+            break
+        case '3':
+            return 'Lazer'
+            break
+        case '4':
+            return 'Saúde'
+            break
+        case '5':
+            return 'Esporte'
+            break
+    }
 }
