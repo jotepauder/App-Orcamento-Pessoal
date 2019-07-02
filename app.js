@@ -68,6 +68,7 @@ class Bd {
     }
 }
 
+//Instância global de bd
 let bd = new Bd()
 
 function cadastrarDepesa() {
@@ -139,14 +140,9 @@ function preencheTabela(despesas) {
         linha.insertCell(3).innerHTML = element.valor
     });
 
-    /*let despesa = despesas[i]
-    tabela.innerHTML = "<h1>Hello</h1>"
-    tabela.innerHTML = `<td> ${despesa.dia} / ${despesa.mes} / ${despesa.ano} </td>`
-    tabela.innerHTML = "</tr>"
-
-}*/
 }
 
+// Retorna a atividade de acordo com o seu value
 function escolheTipoDespesa(elemento) {
     switch (elemento) {
         case '1':
