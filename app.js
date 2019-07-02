@@ -133,7 +133,7 @@ function preencheTabela(despesas) {
         //criando a linha <tr>
         let linha = tabela.insertRow()
         //criando a coluna
-        linha.insertCell(0).innerHTML = `${element.dia} / ${element.mes} / ${element.ano}`
+        linha.insertCell(0).innerHTML = `${addZero(element.dia)}/${addZero(element.mes)}/${element.ano}`
         linha.insertCell(1).innerHTML = escolheTipoDespesa(element.tipo)
         linha.insertCell(2).innerHTML = element.descricao
         linha.insertCell(3).innerHTML = element.valor
@@ -164,5 +164,14 @@ function escolheTipoDespesa(elemento) {
         case '5':
             return 'Esporte'
             break
+    }
+}
+
+//Adiciona um zero a esquerda na data para valores > 0 e <=9
+function addZero(dia) {
+    if (dia > 0 && dia <= 9) {
+        return `0${dia}`
+    } else {
+        return `${dia}`
     }
 }
