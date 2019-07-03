@@ -138,6 +138,7 @@ function preencheTabela(despesas) {
         linha.insertCell(1).innerHTML = escolheTipoDespesa(element.tipo)
         linha.insertCell(2).innerHTML = element.descricao
         linha.insertCell(3).innerHTML = element.valor
+        linha.insertCell(4).innerHTML = `<button class="btn btn-danger">Excluir</button>`
     });
 
 }
