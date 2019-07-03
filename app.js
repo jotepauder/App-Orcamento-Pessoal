@@ -93,6 +93,12 @@ function cadastrarDepesa() {
     if (funcao) {
         bd.gravar(despesa)
         alterarModal(funcao)
+        ano.value = ''
+        mes.value = ''
+        dia.value = ''
+        tipo.value = ''
+        descricao = ''
+        valor.value = ''
 
     } else {
         alterarModal(funcao)
