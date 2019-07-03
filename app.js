@@ -66,6 +66,35 @@ class Bd {
 
         return despesas
     }
+
+    pesquisar(despesa){
+        let despesasFiltradas = []
+        despesasFiltradas = bd.recuperarRegistros()
+
+        console.log('Antes do filtro: ', despesasFiltradas)
+
+        if(despesa.ano != ''){
+            despesasFiltradas = despesasFiltradas.filter(d => d.ano == despesa.ano)
+        }
+        
+        if(despesa.mes != ''){
+            despesasFiltradas = despesasFiltradas.filter(d => d.mes == despesa.mes)
+        }
+
+        if(despesa.dia != ''){
+            despesasFiltradas = despesasFiltradas.filter(d => d.dia == despesa.dia)
+        }
+
+        if(despesa.tipo != ''){
+            despesasFiltradas = despesasFiltradas.filter(d => d.tipo == despesa.tipo)
+        }
+
+        if(despesa.descricao != ''){
+            despesasFiltradas = despesasFiltradas.filter(d => d.descricao == despesa.descricao)
+        }
+
+        console.log('Depois do filtro: ', despesasFiltradas)
+    }
 }
 
 //Instância global de bd
@@ -177,4 +206,17 @@ function addZero(dia) {
     } else {
         return `${dia}`
     }
+}
+
+function pesquisaDespesa(){
+    let ano = document.getElementById('ano').value
+    let mes = document.getElementById('mes').value
+    let dia = document.getElementById('dia').value
+    let tipo = document.getElementById('tipo').value
+    let descricao = document.getElementById('descricao').value
+    let valor = document.getElementById('valor').value
+
+    let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
+
+    bd.pesquisar(despesa)
 }
