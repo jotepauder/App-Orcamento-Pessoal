@@ -3,10 +3,10 @@
 <p> O projeto App Orçamento Pessoal tem como objetivo colocar em prática meus conhecimentos adquiridos na sintaxe do ES6.</p>
 
 <h3>Tela de cadastro</h3>
-<img width="250" src="https://user-images.githubusercontent.com/41491555/60633189-e06cb800-9ddf-11e9-9d6b-e09602d1ce14.png">
+<img width="650" src="https://user-images.githubusercontent.com/41491555/60633189-e06cb800-9ddf-11e9-9d6b-e09602d1ce14.png">
 
 <br>
 <br>
 
 <h3>Tela de consulta</h3>
-<img width="250" src="https://user-images.githubusercontent.com/41491555/60633277-3e010480-9de0-11e9-9d5a-ee5a9b1f9f55.png">
+<img width="650" src="https://user-images.githubusercontent.com/41491555/60633277-3e010480-9de0-11e9-9d5a-ee5a9b1f9f55.png">
