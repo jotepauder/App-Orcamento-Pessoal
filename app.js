@@ -67,33 +67,34 @@ class Bd {
         return despesas
     }
 
-    pesquisar(despesa){
+    pesquisar(despesa) {
         let despesasFiltradas = []
         despesasFiltradas = bd.recuperarRegistros()
 
         console.log('Antes do filtro: ', despesasFiltradas)
 
-        if(despesa.ano != ''){
+        if (despesa.ano != '') {
             despesasFiltradas = despesasFiltradas.filter(d => d.ano == despesa.ano)
         }
-        
-        if(despesa.mes != ''){
+
+        if (despesa.mes != '') {
             despesasFiltradas = despesasFiltradas.filter(d => d.mes == despesa.mes)
         }
 
-        if(despesa.dia != ''){
+        if (despesa.dia != '') {
             despesasFiltradas = despesasFiltradas.filter(d => d.dia == despesa.dia)
         }
 
-        if(despesa.tipo != ''){
+        if (despesa.tipo != '') {
             despesasFiltradas = despesasFiltradas.filter(d => d.tipo == despesa.tipo)
         }
 
-        if(despesa.descricao != ''){
+        if (despesa.descricao != '') {
             despesasFiltradas = despesasFiltradas.filter(d => d.descricao == despesa.descricao)
         }
 
-        console.log('Depois do filtro: ', despesasFiltradas)
+        //console.log('Depois do filtro: ', despesasFiltradas)
+        return despesasFiltradas
     }
 }
 
@@ -194,7 +195,7 @@ function escolheTipoDespesa(elemento) {
             return 'Saúde'
             break
         case '5':
-            return 'Esporte'
+            return 'Transporte'
             break
     }
 }
@@ -208,7 +209,7 @@ function addZero(dia) {
     }
 }
 
-function pesquisaDespesa(){
+function pesquisaDespesa() {
     let ano = document.getElementById('ano').value
     let mes = document.getElementById('mes').value
     let dia = document.getElementById('dia').value
@@ -218,5 +219,9 @@ function pesquisaDespesa(){
 
     let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
 
-    bd.pesquisar(despesa)
+    let despesasFiltradas = bd.pesquisar(despesa)
+    let tabela = document.getElementById('tabela')
+    tabela.innerHTML = ''
+    preencheTabela(despesasFiltradas)
+    console.log('Depois do filtro: ', despesasFiltradas)
 }
